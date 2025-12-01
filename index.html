@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buy premium Minecraft accounts with full access, instant delivery, and 24/7 support">
+    <title>Minecraft Account Shop | Premium Accounts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --minecraft-green: #3a7d34;
+            --minecraft-dark: #1a1a2e;
+            --minecraft-light: #c6ffc1;
+            --minecraft-gold: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--minecraft-dark);
+            color: #f0f0f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .shop-header {
+            background: linear-gradient(135deg, var(--minecraft-green) 0%, #24591f 100%);
+            border-bottom: 5px solid #8B4513;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            padding: 25px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shop-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--minecraft-gold), #FFA500, var(--minecraft-gold));
+        }
+        
+        .shop-header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        .shop-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 3px 3px 0 #000, 6px 6px 0 rgba(0, 0, 0, 0.2);
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+        
+        .shop-subtitle {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--minecraft-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .shop-features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .feature i {
+            color: var(--minecraft-gold);
+        }
+        
+        /* Navigation */
+        .main-nav {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link:hover {
+            background: var(--minecraft-green);
+            transform: translateY(-2px);
+        }
+        
+        /* Product Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .detail-box {
+            background-color: #2d2d44;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid var(--minecraft-green);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .detail-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            border-color: var(--minecraft-gold);
+        }
+
+        .detail-box h2 {
+            margin-bottom: 15px;
+            color: #fff;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--minecraft-green);
+            padding-bottom: 10px;
+        }
+
+        .detail-box .price {
+            font-size: 1.8rem;
+            color: var(--minecraft-gold);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .detail-box p {
+            font-size: 16px;
+            color: var(--minecraft-light);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .detail-box ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .detail-box ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+            color: #ddd;
+        }
+
+        .detail-box ul li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .detail-box a {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(to right, var(--minecraft-green), #4CAF50);
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .detail-box a:hover {
+            background: linear-gradient(to right, #4CAF50, var(--minecraft-green));
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+            transform: scale(1.05);
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: rgba(0, 0, 0, 0.5);
+            margin-top: 50px;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 3px solid var(--minecraft-green);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer p {
+            margin: 10px 0;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .shop-features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-link {
+                width: 80%;
+                justify-content: center;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="shop-header">
+        <div class="shop-header-content">
+            <h1 class="shop-title">Minecraft Account Shop</h1>
+            <p class="shop-subtitle">Premium Accounts • Full Access • Instant Delivery • 24/7 Support</p>
+            
+            <div class="shop-features">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Secure Accounts</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>Instant Delivery</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 Customer Support</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-tags"></i>
+                    <span>Best Prices Guaranteed</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="payment.html" class="nav-link">
+                <i class="fas fa-qrcode"></i> Payment Instructions
+            </a>
+            <a href="contact.html" class="nav-link">
+                <i class="fas fa-envelope"></i> Contact
+            </a>
+        </div>
+    </nav>
+
+    <!-- Products -->
+    <div class="container">
+        <div class="detail-box">
+            <h2>Basic Account</h2>
+            <div class="price">$13.00</div>
+            <p>Full Access Account</p>
+            <ul>
+                <li>0 Cape</li>
+                <li>Ban Hypixel</li>
+                <li>Java And Bedrock</li>
+                <li>Email Access</li>
+                <li>Instant Delivery</li>
+            </ul>
+            <a href="payment.html">Buy Now</a>
+        </div>
+
+        <div class="detail-box">
+            <h2>Standard Account</h2>
+            <div class="price">$13.50</div>
+            <p>Full Access Account</p>
+            <ul>
+                <li>1 Cape</li>
+                <li>No Ban Hypixel</li>
+                <li>Java Only</li>
+                <li>Email Access</li>
+                <li>Instant Delivery</li>
+            </ul>
+            <a href="payment.html">Buy Now</a>
+        </div>
+
+        <div class="detail-box">
+            <h2>Premium Account</h2>
+            <div class="price">$14.00</div>
+            <p>Full Access Account</p>
+            <ul>
+                <li>1 Random Cape</li>
+                <li>No Ban Hypixel</li>
+                <li>Java Only</li>
+                <li>Email Access</li>
+                <li>Instant Delivery</li>
+            </ul>
+            <a href="payment.html">Buy Now</a>
+        </div>
+
+        <div class="detail-box">
+            <h2>Ultimate Account</h2>
+            <div class="price">$14.50</div>
+            <p>Full Access Account</p>
+            <ul>
+                <li>1 Random Cape</li>
+                <li>No Ban Hypixel</li>
+                <li>Java And Bedrock</li>
+                <li>Email Access</li>
+                <li>Instant Delivery</li>
+                <li>Priority Support</li>
+            </ul>
+            <a href="payment.html">Buy Now</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Minecraft Account Shop &copy; 2023 - All Rights Reserved</p>
+            <p>Not affiliated with Mojang or Microsoft. Accounts are sold as-is.</p>
+            <p>Contact: <a href="https://t.me/sokb07" style="color: #0088cc;">Telegram @sokb07</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
