@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Minecraft Account Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --minecraft-green: #3a7d34;
+            --minecraft-dark: #1a1a2e;
+            --minecraft-light: #c6ffc1;
+            --minecraft-gold: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: var(--minecraft-dark);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--minecraft-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background: var(--minecraft-green);
+            transform: translateX(-5px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: var(--minecraft-light);
+            font-size: 1.2rem;
+        }
+        
+        .contact-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            border-color: var(--minecraft-green);
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            color: var(--minecraft-gold);
+            margin-bottom: 20px;
+        }
+        
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--minecraft-green) 0%, #4CAF50 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .contact-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        .faq {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .faq h3 {
+            color: var(--minecraft-gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        
+        .faq-question {
+            color: var(--minecraft-light);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .contact-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Shop
+        </a>
+        
+        <div class="header">
+            <h1>Contact Us</h1>
+            <p class="subtitle">We're here to help you 24/7</p>
+        </div>
+        
+        <div class="contact-methods">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3>Telegram</h3>
+                <p>Fastest response time - 24/7 support</p>
+                <a href="https://t.me/sokb07" class="contact-button" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Message @sokb07
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>Order Support</h3>
+                <p>Need help with your purchase or delivery?</p>
+                <a href="payment.html" class="contact-button">
+                    <i class="fas fa-qrcode"></i>
+                    Payment Instructions
+                </a>
+            </div>
+        </div>
+        
+        <div class="faq">
+            <h3>Frequently Asked Questions</h3>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: How long does delivery take?</div>
+                <p>A: Accounts are delivered within 5-15 minutes after payment verification.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What information do I need to provide?</div>
+                <p>A: Just send your payment receipt/screenshot and mention which account you purchased.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: Are the accounts secure?</div>
+                <p>A: Yes, all accounts come with full access and email change capability.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Q: What if I have issues with the account?</div>
+                <p>A: Contact us on Telegram immediately - we provide 24/7 support.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; color: #aaa; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>Minecraft Account Shop &copy; 2023</p>
+            <p>Response time: Usually within 5 minutes</p>
+        </div>
+    </div>
+</body>
+</html>
