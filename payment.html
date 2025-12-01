@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Payment instructions for Minecraft Account Shop">
+    <title>Payment Instructions | Minecraft Account Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --minecraft-green: #3a7d34;
+            --minecraft-dark: #1a1a2e;
+            --minecraft-light: #c6ffc1;
+            --minecraft-gold: #FFD700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--minecraft-dark) 0%, #16213e 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--minecraft-light);
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .back-button:hover {
+            background: var(--minecraft-green);
+            transform: translateX(-5px);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #fff;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--minecraft-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Steps */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .step-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .step-card:hover {
+            border-color: var(--minecraft-green);
+            transform: translateY(-5px);
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--minecraft-green) 0%, #4CAF50 100%);
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            color: var(--minecraft-gold);
+            margin-bottom: 15px;
+        }
+        
+        /* QR Code Section */
+        .qr-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+            border: 2px dashed var(--minecraft-green);
+        }
+        
+        .qr-container {
+            max-width: 300px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .qr-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1) 0%, rgba(0, 102, 153, 0.1) 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .telegram-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 35px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 25px 0;
+            transition: all 0.3s;
+        }
+        
+        .telegram-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.4);
+        }
+        
+        /* Important Notice */
+        .notice {
+            background: rgba(255, 100, 100, 0.1);
+            border-left: 4px solid #ff5555;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .steps-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .qr-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Shop
+        </a>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>Complete Your Purchase</h1>
+            <p class="subtitle">Follow these simple steps to get your Minecraft account instantly</p>
+        </div>
+        
+        <!-- Steps -->
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Choose Account</h3>
+                <p>Select your preferred Minecraft account from our shop</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Make Payment</h3>
+                <p>Scan the QR code below to complete your payment</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Get Account</h3>
+                <p>Contact us on Telegram with payment proof for instant delivery</p>
+            </div>
+        </div>
+        
+        <!-- QR Code -->
+        <div class="qr-section">
+            <h2 style="color: var(--minecraft-gold); margin-bottom: 20px;">Scan to Pay</h2>
+            <p style="margin-bottom: 25px;">Scan this QR code with your payment app to complete the transaction</p>
+            
+            <div class="qr-container">
+                <!-- Replace with your actual QR code image -->
+                <img src="assets/qr.jpg" alt="Payment QR Code">
+            </div>
+            
+            <p style="color: #ffcc00; font-style: italic; margin-top: 15px;">
+                <i class="fas fa-info-circle"></i> Please save your payment receipt
+            </p>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h2>Contact After Payment</h2>
+            <p>After completing your payment, contact us immediately on Telegram:</p>
+            
+            <a href="https://t.me/sokb07" class="telegram-button" target="_blank">
+                <i class="fab fa-telegram-plane"></i>
+                Contact @sokb07 on Telegram
+            </a>
+            
+            <p>Send us your payment screenshot/receipt and we'll deliver your account within minutes!</p>
+        </div>
+        
+        <!-- Important Notice -->
+        <div class="notice">
+            <h3><i class="fas fa-exclamation-triangle"></i> Important Instructions:</h3>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li>Keep your payment receipt ready</li>
+                <li>Include your selected account type in message</li>
+                <li>Accounts are delivered within 5-15 minutes after verification</li>
+                <li>We provide 24/7 customer support</li>
+            </ul>
+        </div>
+        
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 50px; color: #aaa; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+            <p>Minecraft Account Shop &copy; 2023</p>
+            <p>Contact: <a href="https://t.me/sokb07" style="color: #0088cc;">Telegram @sokb07</a></p>
+        </div>
+    </div>
+</body>
+</html>
