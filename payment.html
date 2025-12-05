@@ -77,6 +77,43 @@
             margin: 0 auto;
         }
         
+        /* Selected Account Display */
+        .selected-account {
+            margin: 25px 0;
+            animation: slideDown 0.5s ease-out;
+        }
+        
+        .account-info {
+            background: linear-gradient(135deg, #3a7d34, #24591f);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 3px solid #FFD700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .account-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #c6ffc1;
+        }
+        
+        .account-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 10px 0;
+            color: white;
+        }
+        
+        .account-price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #FFD700;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
         /* Steps */
         .steps-container {
             display: grid;
@@ -180,6 +217,18 @@
             border-radius: 0 10px 10px 0;
         }
         
+        /* Animation */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 25px;
@@ -191,6 +240,14 @@
             
             .qr-section {
                 padding: 25px;
+            }
+            
+            .account-name {
+                font-size: 1.5rem;
+            }
+            
+            .account-price {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -207,6 +264,8 @@
             <h1>Complete Your Purchase</h1>
             <p class="subtitle">Follow these simple steps to get your Minecraft account instantly</p>
         </div>
+        
+        <!-- Selected Account Will Appear Here Dynamically -->
         
         <!-- Steps -->
         <div class="steps-container">
@@ -235,8 +294,8 @@
             <p style="margin-bottom: 25px;">Scan this QR code with your payment app to complete the transaction</p>
             
             <div class="qr-container">
-                <!-- Replace with your actual QR code image -->
-                <img src="qr.jpg" alt="Payment QR Code">
+                <!-- QR code will be updated dynamically -->
+                <img src="assets/images/qr.jpg" alt="Payment QR Code" id="qrImage">
             </div>
             
             <p style="color: #ffcc00; font-style: italic; margin-top: 15px;">
@@ -249,7 +308,7 @@
             <h2>Contact After Payment</h2>
             <p>After completing your payment, contact us immediately on Telegram:</p>
             
-            <a href="https://t.me/sokb07" class="telegram-button" target="_blank">
+            <a href="https://t.me/sokb07" class="telegram-button" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-telegram-plane"></i>
                 Contact @sokb07 on Telegram
             </a>
@@ -263,7 +322,7 @@
             <ul style="margin-top: 10px; padding-left: 20px;">
                 <li>Keep your payment receipt ready</li>
                 <li>Include your selected account type in message</li>
-                <li>Accounts are delivered within 24 hours after verification</li>
+                <li>Accounts are delivered within 5-15 minutes after verification</li>
                 <li>We provide 24/7 customer support</li>
             </ul>
         </div>
@@ -274,5 +333,66 @@
             <p>Contact: <a href="https://t.me/sokb07" style="color: #0088cc;" target="_blank" rel="noopener noreferrer">Telegram @sokb07</a></p>
         </div>
     </div>
+
+    <script>
+        // Get URL parameters
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                account: params.get('account') || 'premium',
+                price: params.get('price') || '14'
+            };
+        }
+        
+        // Update page with selected account
+        function updateSelectedAccount() {
+            const { account, price } = getUrlParams();
+            
+            // Account type names mapping
+            const accountNames = {
+                'basic': 'Basic Account',
+                'standard': 'Standard Account', 
+                'premium': 'Premium Account',
+                'ultimate': 'Ultimate Account',
+                'deluxe': 'Deluxe Account'
+            };
+            
+            // Create selected account display
+            const selectedDiv = document.createElement('div');
+            selectedDiv.className = 'selected-account';
+            selectedDiv.innerHTML = `
+                <div class="account-info">
+                    <h3><i class="fas fa-shopping-cart"></i> Selected Account</h3>
+                    <p class="account-name">${accountNames[account]}</p>
+                    <p class="account-price">$${price}</p>
+                    <p style="color: #c6ffc1; margin-top: 10px;">
+                        <i class="fas fa-check-circle"></i> Ready for payment
+                    </p>
+                </div>
+            `;
+            
+            // Insert after the header
+            const header = document.querySelector('.header');
+            if (header) {
+                header.parentNode.insertBefore(selectedDiv, header.nextSibling);
+            }
+            
+            // Update QR code image based on price
+            const qrImage = document.getElementById('qrImage');
+            if (qrImage) {
+                // If you have different QR codes for different prices
+                // qrImage.src = `assets/images/qr-${price}.jpg`;
+                
+                // Update alt text
+                qrImage.alt = `Payment QR Code for $${price} - ${accountNames[account]}`;
+            }
+            
+            // Update page title
+            document.title = `Pay $${price} for ${accountNames[account]} | Minecraft Shop`;
+        }
+        
+        // Run when page loads
+        document.addEventListener('DOMContentLoaded', updateSelectedAccount);
+    </script>
 </body>
 </html>
