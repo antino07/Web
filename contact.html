@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MC Shop</title>
+    <link rel="icon" href="images.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3a1a 0%, #0f2a0c 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        .nav-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #3a7d34;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            background: #3a7d34;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background: #3a7d34;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(58,125,52,0.2) 0%, rgba(255,215,0,0.1) 100%);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #3a7d34;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #c6ffc1;
+        }
+        
+        /* Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        /* Contact Cards */
+        .contact-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #3a7d34;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #FFD700;
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card h2 {
+            color: #c6ffc1;
+            margin-bottom: 15px;
+        }
+        
+        .contact-detail {
+            color: #FFD700;
+            font-size: 1.2rem;
+            margin: 10px 0;
+        }
+        
+        .response-time {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3a7d34, #4CAF50);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(76,175,80,0.4);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        
+        .faq-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 30px;
+        }
+        
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid transparent;
+        }
+        
+        .faq-question:hover {
+            background: rgba(58,125,52,0.2);
+        }
+        
+        .faq-question h3 {
+            color: #c6ffc1;
+            font-size: 1.1rem;
+        }
+        
+        .faq-question i {
+            color: #FFD700;
+            transition: transform 0.3s;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        .faq-answer.show {
+            max-height: 200px;
+            padding: 20px;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.3);
+            border-top: 3px solid #3a7d34;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                justify-content: center;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+      .link { 
+        color: cyan
+      }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="img/images.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/40x40?text=MC'">
+            Kbez Shop
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-home">Minecraft Accounts</a>
+            <a href="/pins" class="nav-pins">Digital Pins</a>
+            <a href="/coins" class="nav-coins">Game Coins</a>
+            <a href="/contact" class="nav-contact active">Contact</a>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>Contact Us</h1>
+        <p>We're here to help 24/7! Choose your preferred way to reach us.</p>
+    </div>
+    
+    <!-- Contact Cards -->
+    <div class="contact-container">
+        
+        <!-- Telegram Card -->
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fab fa-telegram"></i>
+            </div>
+            <h2>Telegram</h2>
+            <div class="contact-detail">@sokb07</div>
+            <div class="response-time">⏱️ Response time: 2-10 minutes</div>
+            <a href="https://t.me/sokb07" class="contact-btn" target="_blank">
+                <i class="fab fa-telegram"></i> Message on Telegram
+            </a>
+        </div>
+        
+        <!-- Discord Card -->
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fab fa-discord"></i>
+            </div>
+            <h2>Discord</h2>
+            <div class="contact-detail">MC Shop Support</div>
+            <div class="response-time">⏱️ Response time: 5-20 minutes</div>
+            <a href="https://discord.gg/7PB3Vz5nng" class="contact-btn"  target="_blank" onclick="alert('Join our Discord: discord.gg/7PB3Vz5nng')">
+                <i class="fab fa-discord"></i> Join Discord
+            </a>
+        </div>
+        
+       
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ How long does delivery take?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Delivery takes 5-15 minutes after payment verification. You'll receive the account details via Telegram.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ How can I redeem the code's cape?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Login to <a href="https://www.minecraft.net/en-us/" class="link" target="_blank">minecraft.net</a>, go to <a href="https://www.minecraft.net/en-us/msaprofile/redeem-code" class="link" target="_blank">Minecraft-Redeem</a>, and click "Change Password". We recommend changing it immediately.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ What payment methods do you accept?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                We accept all Bakong's QR code is provided when u chatted to admin.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ Can I get a refund if the account doesn't work?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                We offer a 7-day replacement guarantee. If the account stops working, we'll replace it for free. No cash refunds.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ How do I change the account password?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Login to <a href="https://www.microsoft.com/en-us/" class="link" target="_blank">microsoft.com</a>, go to Account Settings, and click "Change Password". We recommend changing it immediately.
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">
+                <h3>❓ Do I need to provide anything after payment?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Just send your payment screenshot on Telegram and we'll deliver your account within minutes.
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p>This Website is for Education purpose only.</p>
+        <p>Not affiliated with Mojang or Microsoft.</p>
+        <p>Contact: <a href="https://t.me/sokb07" target="_blank">@sokb07 on Telegram</a></p>
+    </div>
+    
+    <script>
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            answer.classList.toggle('show');
+            
+            if (answer.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+        
+        // Navigation highlight
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            
+            if (path === '/' || path === '') {
+                document.querySelector('.nav-home')?.classList.add('active');
+            } else if (path === '/pins') {
+                document.querySelector('.nav-pins')?.classList.add('active');
+            } else if (path === '/coins') {
+                document.querySelector('.nav-coins')?.classList.add('active');
+            } else if (path === '/contact') {
+                document.querySelector('.nav-contact')?.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

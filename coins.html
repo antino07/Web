@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Coins - MC Shop</title>
+    <link rel="icon" href="images.jpg" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== UNIVERSAL NAVIGATION STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1e3a1a 0%, #0f2a0c 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+        
+        /* ===== MAIN NAVIGATION (TOP BAR) ===== */
+        .nav-bar {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #3a7d34;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            background: #3a7d34;
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a.active {
+            background: #3a7d34;
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        /* ===== CATEGORY NAVIGATION (SECOND BAR) ===== */
+        .category-nav {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #3a7d34;
+        }
+        
+        .category-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            background: rgba(58,125,52,0.3);
+        }
+        
+        .category-nav a:hover {
+            background: #3a7d34;
+            transform: translateY(-2px);
+        }
+        
+        .category-nav a.active-cat {
+            background: #FFD700;
+            color: #1e3a1a;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 900px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            .category-nav {
+                padding: 12px 20px;
+                gap: 10px;
+            }
+            
+            .category-nav a {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* ===== PAGE HEADER ===== */
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(58,125,52,0.2) 0%, rgba(255,215,0,0.1) 100%);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0 #3a7d34;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            color: #c6ffc1;
+        }
+        
+        /* ===== PRODUCT GRID ===== */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #3a7d34;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #FFD700;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.2);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FFD700;
+            color: #1e3a1a;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .badge.popular {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .product-icon {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .product-card h2 {
+            color: #c6ffc1;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .price {
+            font-size: 2rem;
+            color: #FFD700;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .original-price {
+            color: #aaa;
+            text-decoration: line-through;
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .features li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .buy-btn {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(135deg, #3a7d34, #4CAF50);
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .buy-btn:hover {
+            background: linear-gradient(135deg, #4CAF50, #3a7d34);
+            transform: scale(1.05);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0,0,0,0.3);
+            border-top: 3px solid #3a7d34;
+            margin-top: 40px;
+        }
+        
+        .footer a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+        /* Product Image Styles - Add to all pages */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #FFD700;
+            background-color: #1e3a1a;
+        }
+        .category-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            background: rgba(58,125,52,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            vertical-align: middle;
+        }
+                @media (max-width: 768px) {
+            .category-icon {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .category-nav a {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== MAIN NAVIGATION (TOP) ===== -->
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="img/images.jpg" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/40x40?text=MC'">
+            Kbez Shop
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-home">Minecraft Accounts</a>
+            <a href="/pins" class="nav-pins">Digital Pins</a>
+            <a href="/coins" class="nav-coins active">Feather Cosmetics</a>
+            <a href="/contact" class="nav-contact">Contact</a>
+        </div>
+    </div>
+    
+    <!-- ===== CATEGORY NAVIGATION (SECOND BAR) ===== -->
+   <div class="category-nav">
+    <a href="#" class="active-cat" onclick="filterCategory('all'); return false;">
+           <img src="img/all-icon.png" alt="All" class="category-icon" onerror="this.outerHTML='📦'">
+        All
+    </a>
+
+    <a href="#" onclick="filterCategory('capes'); return false;">
+        <img src="img/cod-icon.png" alt="COD" class="category-icon"> Capes
+    </a>
+    
+    
+    <a href="#" onclick="filterCategory('claws'); return false;">
+        Claws
+    </a>
+    
+    <a href="#" onclick="filterCategory('hats'); return false;">
+         Hats
+    </a>
+    
+    <a href="#" onclick="filterCategory('wings'); return false;">
+         Wings
+    </a>
+    
+    <a href="#" onclick="filterCategory('pets'); return false;">
+         Pets
+    </a>
+    
+    <a href="#" onclick="filterCategory('aura'); return false;">
+         Aura
+    </a>
+    
+    <a href="#" onclick="filterCategory('backpacks'); return false;">
+         Backpacks
+    </a>
+    
+    <a href="#" onclick="filterCategory('masks'); return false;">
+         Masks
+    </a>
+    
+    <a href="#" onclick="filterCategory('shoes'); return false;">
+         Shoes
+    </a>
+
+</div>
+    
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <h1>Feather Cosmetics</h1>
+        <p>Sell all Feather's cosmetics</p>
+    </div>
+    
+    <!-- ===== PRODUCTS ===== -->
+    <div class="container" id="productsContainer">
+      <!-- ===== CAPES ===== -->  
+        <!-- Cape -->
+        <div class="product-card" data-category="capes">
+            <span class="badge popular">POPULAR</span>
+             <img src="img/Cape.jpg" alt="Basic Account" class="product-image">
+            <h2>Sharpness Enchant Cape</h2>
+            <div class="price">$16.5 <span class="original-price">$19.99</span></div>
+            <ul class="features">
+                <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Now</a>
+        </div>
+        
+        <!-- Claws -->
+        <div class="product-card" data-category="claws">
+            <img src="img/Claw.jpg" alt="Basic Account" class="product-image">
+            <h2>Claws</h2>
+            <div class="price">$10 <span class="original-price">$15</span></div>
+            <ul class="features">
+               <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Now</a>
+        </div>
+        
+        <!-- Hats -->
+        <div class="product-card" data-category="hats">
+            <img src="img/Hat.jpg" alt="Basic Account" class="product-image">
+            <h2>BeenTaken Fedora</h2>
+            <span class="badge">BEST VALUE</span>
+            <div class="price">$10 <span class="original-price">$15</span></div>
+            <ul class="features">
+                <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Card</a>
+        </div>
+        
+        <!-- Wings-->
+        <div class="product-card" data-category="wings">
+            <img src="img/wing.jpg" alt="Basic Account" class="product-image">
+            <h2>Cobweb Wing</h2>
+            <div class="price">$21 <span class="original-price">$25</span></div>
+            <ul class="features">
+                <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Coins</a>
+        </div>
+        
+        <!-- PEts -->
+        <div class="product-card" data-category="pets">
+            <img src="img/pet.jpg" alt="Basic Account" class="product-image">
+            <h2>Sharpness Angel Pet</h2>
+            <div class="price">$15 <span class="original-price">$18</span></div>
+            <ul class="features">
+                <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Coins</a>
+        </div>
+        
+        <!-- aura -->
+        <div class="product-card" data-category="aura">
+            <img src="img/aura.jpg" alt="Basic Account" class="product-image">
+            <h2>Reactor Aura</h2>
+            <div class="price">$15 <span class="original-price">$18</span></div>
+            <ul class="features">
+                <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Now</a>
+        </div>
+        
+        <!-- bp -->
+        <div class="product-card" data-category="backpacks">
+            <img src="img/Backpack.jpg" alt="Basic Account" class="product-image">
+            <h2>Gamer Tower</h2>
+            <div class="price">$10</div>
+            <ul class="features">
+               <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
+        </div>
+
+
+         <!-- mask -->
+        <div class="product-card" data-category="masks">
+            <img src="img/Mask.jpg" alt="Basic Account" class="product-image">
+            <h2>Clown Mask</h2>
+            <div class="price">$9</div>
+            <ul class="features">
+               <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
+        </div>
+
+         <!-- shoes-->
+        <div class="product-card" data-category="shoes">
+            <img src="img/Shoes.jpg" alt="Basic Account" class="product-image">
+            <h2>Elf Booter</h2>
+            <div class="price">$10</div>
+            <ul class="features">
+               <li>Send via gift by user's username</li>
+            </ul>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
+        </div>
+    </div>
+    
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <p>This Website is made for Education purpose only.</p>
+        <p>Contact: <a href="https://t.me/sokb07" target="_blank">Admin on Telegram</a></p>
+    </div>
+    
+    <script>
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product-card');
+            
+            // Update active button
+            document.querySelectorAll('.category-nav a').forEach(btn => {
+                btn.classList.remove('active-cat');
+            });
+            event.target.classList.add('active-cat');
+            
+            // Filter products
+            products.forEach(product => {
+                if (category === 'all') {
+                    product.style.display = 'block';
+                } else {
+                    if (product.dataset.category === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Navigation highlight
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+            
+            if (path === '/' || path === '') {
+                document.querySelector('.nav-home')?.classList.add('active');
+            } else if (path === '/pins') {
+                document.querySelector('.nav-pins')?.classList.add('active');
+            } else if (path === '/coins') {
+                document.querySelector('.nav-coins')?.classList.add('active');
+            } else if (path === '/contact') {
+                document.querySelector('.nav-contact')?.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>
