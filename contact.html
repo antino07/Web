@@ -384,64 +384,18 @@
     </div>
     
     <script>
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('i');
-            
-            answer.classList.toggle('show');
-            
-            if (answer.classList.contains('show')) {
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                icon.style.transform = 'rotate(0deg)';
-            }
-        }
-        
-        // Navigation highlight
-        document.addEventListener('DOMContentLoaded', function() {
-            const path = window.location.pathname;
-            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-            
-            if (path === '/' || path === '') {
-                document.querySelector('.nav-home')?.classList.add('active');
-            } else if (path === '/pins') {
-                document.querySelector('.nav-pins')?.classList.add('active');
-            } else if (path === '/coins') {
-                document.querySelector('.nav-coins')?.classList.add('active');
-            } else if (path === '/contact') {
-                document.querySelector('.nav-contact')?.classList.add('active');
-            
-            }
+// Simple navigation highlight
+const currentPage = window.location.pathname.split('/').pop();
+const links = document.querySelectorAll('.nav-links a');
 
-            // Auto-highlight current page in navigation
-document.addEventListener('DOMContentLoaded', function() {
-    // Get current file name (e.g., "index.html", "pins.html")
-    let currentPage = window.location.pathname.split('/').pop();
-    
-    // If no file specified (just /), treat as index.html
-    if (currentPage === '' || currentPage === '/') {
-        currentPage = 'index.html';
-    }
-    
-    console.log('Current page:', currentPage); // Debug: check what page you're on
-    
-    // Remove active class from all links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-    });
-    
-    // Add active class based on current page
-    if (currentPage === 'index.html') {
-        document.querySelector('.nav-home')?.classList.add('active');
-    } else if (currentPage === 'pins.html') {
-        document.querySelector('.nav-pins')?.classList.add('active');
-    } else if (currentPage === 'coins.html') {
-        document.querySelector('.nav-coins')?.classList.add('active');
-    } else if (currentPage === 'contact.html') {
-        document.querySelector('.nav-contact')?.classList.add('active');
+links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || 
+        (currentPage === '' && href === 'index.html') ||
+        (currentPage === '/' && href === 'index.html')) {
+        link.classList.add('active');
     }
 });
-        });
-    </script>
+</script>
 </body>
 </html>
