@@ -507,45 +507,19 @@
         <p>Contact: <a href="https://t.me/sokb07" target="_blank">Admin on Telegram</a></p>
     </div>
     
-    <script>
-        function filterCategory(category) {
-            const products = document.querySelectorAll('.product-card');
-            
-            // Update active button
-            document.querySelectorAll('.category-nav a').forEach(btn => {
-                btn.classList.remove('active-cat');
-            });
-            event.target.classList.add('active-cat');
-            
-            // Filter products
-            products.forEach(product => {
-                if (category === 'all') {
-                    product.style.display = 'block';
-                } else {
-                    if (product.dataset.category === category) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                }
-            });
-        }
-        
-        // Navigation highlight
-        document.addEventListener('DOMContentLoaded', function() {
-            const path = window.location.pathname;
-            document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-            
-            if (path === '/' || path === '') {
-                document.querySelector('.nav-home')?.classList.add('active');
-            } else if (path === '/pins') {
-                document.querySelector('.nav-pins')?.classList.add('active');
-            } else if (path === '/coins') {
-                document.querySelector('.nav-coins')?.classList.add('active');
-            } else if (path === '/contact') {
-                document.querySelector('.nav-contact')?.classList.add('active');
-            }
-        });
-    </script>
+   <script>
+// Simple navigation highlight
+const currentPage = window.location.pathname.split('/').pop();
+const links = document.querySelectorAll('.nav-links a');
+
+links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPage || 
+        (currentPage === '' && href === 'index.html') ||
+        (currentPage === '/' && href === 'index.html')) {
+        link.classList.add('active');
+    }
+});
+</script>
 </body>
 </html>
