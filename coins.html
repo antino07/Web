@@ -98,6 +98,10 @@
             transition: all 0.3s;
             font-size: 0.9rem;
             background: rgba(58,125,52,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
         }
         
         .category-nav a:hover {
@@ -109,6 +113,13 @@
             background: #FFD700;
             color: #1e3a1a;
             font-weight: bold;
+        }
+        
+        .category-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            vertical-align: middle;
         }
         
         @media (max-width: 900px) {
@@ -131,6 +142,11 @@
             .category-nav a {
                 padding: 6px 12px;
                 font-size: 0.8rem;
+            }
+            
+            .category-icon {
+                width: 16px;
+                height: 16px;
             }
         }
         
@@ -263,6 +279,17 @@
             transform: scale(1.05);
         }
         
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #FFD700;
+            background-color: #1e3a1a;
+        }
+        
         .footer {
             text-align: center;
             padding: 40px;
@@ -283,48 +310,6 @@
             
             .header h1 {
                 font-size: 2rem;
-            }
-        }
-        /* Product Image Styles - Add to all pages */
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            object-position: center;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            border: 2px solid #FFD700;
-            background-color: #1e3a1a;
-        }
-        .category-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 30px;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-            background: rgba(58,125,52,0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .category-icon {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            vertical-align: middle;
-        }
-                @media (max-width: 768px) {
-            .category-icon {
-                width: 16px;
-                height: 16px;
-            }
-            
-            .category-nav a {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-                gap: 5px;
             }
         }
     </style>
@@ -406,7 +391,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Now</a>
+            <a href="/contact" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- Claws -->
@@ -417,7 +402,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Now</a>
+            <a href="/contact" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- Hats -->
@@ -429,7 +414,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Card</a>
+            <a href="/contact" class="buy-btn">Buy Card</a>
         </div>
         
         <!-- Wings-->
@@ -440,7 +425,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Coins</a>
+            <a href="/contact" class="buy-btn">Buy Coins</a>
         </div>
         
         <!-- PEts -->
@@ -451,7 +436,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Coins</a>
+            <a href="/contact" class="buy-btn">Buy Coins</a>
         </div>
         
         <!-- aura -->
@@ -462,7 +447,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Now</a>
+            <a href="/contact" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- bp -->
@@ -473,7 +458,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Credits</a>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
         </div>
 
 
@@ -485,7 +470,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Credits</a>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
         </div>
 
          <!-- shoes-->
@@ -496,7 +481,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="contact.html" class="buy-btn">Buy Credits</a>
+            <a href="/contact" class="buy-btn">Buy Credits</a>
         </div>
     </div>
     
@@ -507,16 +492,57 @@
     </div>
     
    <script>
-// Simple navigation highlight
-const currentPage = window.location.pathname.split('/').pop();
-const links = document.querySelectorAll('.nav-links a');
+// ===== FILTER FUNCTION (ADD THIS) =====
+function filterCategory(category) {
+    // Get all products
+    const products = document.querySelectorAll('.product-card');
+    
+    // Remove active class from ALL category buttons
+    document.querySelectorAll('.category-nav a').forEach(btn => {
+        btn.classList.remove('active-cat');
+    });
+    
+    // Add active class to clicked button
+    document.querySelectorAll('.category-nav a').forEach(btn => {
+        const btnText = btn.textContent.toLowerCase().trim();
+        if (category === 'all' && btnText.includes('all')) {
+            btn.classList.add('active-cat');
+        } else if (btnText.includes(category)) {
+            btn.classList.add('active-cat');
+        }
+    });
+    
+    // Show/Hide products based on category
+    products.forEach(product => {
+        const productCategory = product.getAttribute('data-category');
+        
+        if (category === 'all') {
+            product.style.display = 'block';
+        } else if (productCategory === category) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
 
-links.forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || 
-        (currentPage === '' && href === 'index.html') ||
-        (currentPage === '/' && href === 'index.html')) {
-        link.classList.add('active');
+// ===== NAVIGATION HIGHLIGHT =====
+document.addEventListener('DOMContentLoaded', function() {
+    let currentPage = window.location.pathname.split('/').pop();
+    if (currentPage === '' || currentPage === '/') currentPage = 'index.html';
+    
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    if (currentPage === 'index.html') {
+        document.getElementById('navHome')?.classList.add('active');
+    } else if (currentPage === 'pins.html') {
+        document.getElementById('navPins')?.classList.add('active');
+    } else if (currentPage === 'coins.html') {
+        document.getElementById('navCoins')?.classList.add('active');
+    } else if (currentPage === 'contact.html') {
+        document.getElementById('navContact')?.classList.add('active');
     }
 });
 </script>
