@@ -256,6 +256,19 @@
       .link { 
         color: cyan
       }
+        .faq-answer {
+    max-height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+.faq-answer.show {
+    max-height: 300px;
+    padding: 20px;
+}
     </style>
 </head>
 <body>
@@ -384,8 +397,8 @@
         <p>Contact: <a href="https://t.me/sokb07" target="_blank">@sokb07 on Telegram</a></p>
     </div>
     
-    <script>
-// Simple navigation highlight
+  <script>
+// ===== NAVIGATION HIGHLIGHT =====
 const currentPage = window.location.pathname.split('/').pop();
 const links = document.querySelectorAll('.nav-links a');
 
@@ -397,6 +410,22 @@ links.forEach(link => {
         link.classList.add('active');
     }
 });
+
+// ===== FAQ TOGGLE FUNCTION =====
+function toggleFAQ(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('i');
+    
+    // Toggle the answer visibility
+    answer.classList.toggle('show');
+    
+    // Rotate the arrow icon
+    if (answer.classList.contains('show')) {
+        icon.style.transform = 'rotate(180deg)';
+    } else {
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
 </script>
 </body>
 </html>
