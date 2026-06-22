@@ -324,7 +324,7 @@
        <div class="nav-links">
             <a href="index.html" class="nav-home">Minecraft Accounts</a>
             <a href="pins.html" class="nav-pins">Minecraft Capes</a>
-            <a href="coins.html" class="nav-coins active">Feather Cosmetics</a>
+            <a href="coins.html" class="nav-coins ">Feather Cosmetics</a>
             <a href="contact.html" class="nav-contact">Contact</a>
         </div>
     </div>
@@ -391,7 +391,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Now</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- Claws -->
@@ -402,7 +402,8 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Now</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
+          
         </div>
         
         <!-- Hats -->
@@ -414,7 +415,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Card</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- Wings-->
@@ -425,7 +426,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Coins</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- PEts -->
@@ -436,7 +437,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Coins</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- aura -->
@@ -447,7 +448,7 @@
             <ul class="features">
                 <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Now</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
         
         <!-- bp -->
@@ -458,7 +459,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Credits</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
 
 
@@ -470,7 +471,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Credits</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
 
          <!-- shoes-->
@@ -481,7 +482,7 @@
             <ul class="features">
                <li>Send via gift by user's username</li>
             </ul>
-            <a href="/contact" class="buy-btn">Buy Credits</a>
+            <a href="contact.html" class="buy-btn">Buy Now</a>
         </div>
     </div>
     
@@ -491,18 +492,15 @@
         <p>Contact: <a href="https://t.me/sokb07" target="_blank">Admin on Telegram</a></p>
     </div>
     
-   <script>
-// ===== FILTER FUNCTION (ADD THIS) =====
+<script>
+// ===== FILTER FUNCTION =====
 function filterCategory(category) {
-    // Get all products
     const products = document.querySelectorAll('.product-card');
     
-    // Remove active class from ALL category buttons
     document.querySelectorAll('.category-nav a').forEach(btn => {
         btn.classList.remove('active-cat');
     });
     
-    // Add active class to clicked button
     document.querySelectorAll('.category-nav a').forEach(btn => {
         const btnText = btn.textContent.toLowerCase().trim();
         if (category === 'all' && btnText.includes('all')) {
@@ -512,10 +510,8 @@ function filterCategory(category) {
         }
     });
     
-    // Show/Hide products based on category
     products.forEach(product => {
         const productCategory = product.getAttribute('data-category');
-        
         if (category === 'all') {
             product.style.display = 'block';
         } else if (productCategory === category) {
@@ -526,23 +522,29 @@ function filterCategory(category) {
     });
 }
 
-// ===== NAVIGATION HIGHLIGHT =====
+// ===== NAVIGATION HIGHLIGHT (FIXED) =====
 document.addEventListener('DOMContentLoaded', function() {
     let currentPage = window.location.pathname.split('/').pop();
     if (currentPage === '' || currentPage === '/') currentPage = 'index.html';
     
+    // Remove active class from all nav links
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.classList.remove('active');
     });
     
+    // Add active class based on current page
     if (currentPage === 'index.html') {
-        document.getElementById('navHome')?.classList.add('active');
+        const homeLink = document.querySelector('.nav-home');
+        if (homeLink) homeLink.classList.add('active');
     } else if (currentPage === 'pins.html') {
-        document.getElementById('navPins')?.classList.add('active');
+        const pinsLink = document.querySelector('.nav-pins');
+        if (pinsLink) pinsLink.classList.add('active');
     } else if (currentPage === 'coins.html') {
-        document.getElementById('navCoins')?.classList.add('active');
+        const coinsLink = document.querySelector('.nav-coins');
+        if (coinsLink) coinsLink.classList.add('active');
     } else if (currentPage === 'contact.html') {
-        document.getElementById('navContact')?.classList.add('active');
+        const contactLink = document.querySelector('.nav-contact');
+        if (contactLink) contactLink.classList.add('active');
     }
 });
 </script>
